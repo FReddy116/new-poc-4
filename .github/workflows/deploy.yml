@@ -37,6 +37,6 @@ jobs:
 
             echo "copying contents of index html to root nginx html"
 
-            sudo cat index.html > /usr/share/nginx/html/index.html
+            cat index.html > /usr/share/nginx/html/index.html
 
             echo "Deployment successful"
