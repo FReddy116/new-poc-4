@@ -20,10 +20,23 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
           port: 22
-          source: "./*"
-          target: "/usr/share/nginx/html/"
-          overwrite: true        # 🔥 Fixes your tar error
-          strip_components: 0
-          rm: false
-          debug: true
+          script: |
+            echo "Connected to EC2 VM"
 
+            echo "doing change directory to new-poc-4"
+
+            cd /home/ec2-user/devops/new-poc-4
+
+            echo "inside new-poc-4"
+
+            echo "pulling latest changes from repo"
+
+            git pull
+
+            cat index.html
+
+            echo "copying contents of index html to root nginx html"
+
+            sudo cat index.html > /usr/share/nginx/html/index.html
+
+            echo "Deployment successful"
